@@ -1,0 +1,52 @@
+﻿<Window x:Class="RepairManagementSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RepairManagementSystem"
+        mc:Ignorable="d"
+        Title="Repair Management System" Height="450" Width="800">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <!-- Input Fields -->
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Device Name:"/>
+                <TextBox x:Name="txtDeviceName"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Issue Type:"/>
+                <TextBox x:Name="txtIssueType"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Issue Description:"/>
+                <TextBox x:Name="txtIssueDescription"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Client Name:"/>
+                <TextBox x:Name="txtClientName"/>
+            </StackPanel>
+            <!-- Button to add request -->
+            <Button Content="Add Request" Click="AddRequest_Click"/>
+            <!-- List to display requests -->
+            <ListView x:Name="lvRequests" ItemsSource="{Binding RepairRequests}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Status">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Status}" IsReadOnly="False" TextChanged="StatusTextBox_TextChanged"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Request Number" DisplayMemberBinding="{Binding RequestNumber}"/>
+                        <GridViewColumn Header="Device Name" DisplayMemberBinding="{Binding DeviceName}"/>
+                        <GridViewColumn Header="Issue Type" DisplayMemberBinding="{Binding IssueType}"/>
+                        <GridViewColumn Header="Issue Description" DisplayMemberBinding="{Binding IssueDescription}"/>
+                        <GridViewColumn Header="Client Name" DisplayMemberBinding="{Binding ClientName}"/>
+                        <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Window>
